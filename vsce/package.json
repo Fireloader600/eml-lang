@@ -1,0 +1,153 @@
+{
+  "name": "emerald-language",
+  "displayName": "Emerald Language Support",
+  "description": "Emerald（绿宝石）语言官方 VS Code 支持：语法高亮、补全、诊断、运行、编译、打包",
+  "version": "0.1.0",
+  "publisher": "emerald-lang",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "emerald",
+    "eml",
+    "绿宝石"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onLanguage:emerald",
+    "onCommand:emerald.compile",
+    "onCommand:emerald.run",
+    "onCommand:emerald.wrapper",
+    "onCommand:emerald.newProject",
+    "onCommand:emerald.generateWrapperConfig"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "emerald",
+        "aliases": ["Emerald", "绿宝石", "eml"],
+        "extensions": [".eml", ".emr", ".elr"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "emerald",
+        "scopeName": "source.emerald",
+        "path": "./syntaxes/emerald.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "emerald",
+        "path": "./snippets/emerald.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "emerald.compile",
+        "title": "Emerald: 编译当前文件",
+        "category": "Emerald"
+      },
+      {
+        "command": "emerald.run",
+        "title": "Emerald: 运行当前文件",
+        "category": "Emerald"
+      },
+      {
+        "command": "emerald.wrapper",
+        "title": "Emerald: 打包为 EXE",
+        "category": "Emerald"
+      },
+      {
+        "command": "emerald.newProject",
+        "title": "Emerald: 新建项目",
+        "category": "Emerald"
+      },
+      {
+        "command": "emerald.generateWrapperConfig",
+        "title": "Emerald: 生成 wrapper.ewd 模板",
+        "category": "Emerald"
+      }
+    ],
+    "menus": {
+      "editor/title/run": [
+        {
+          "command": "emerald.run",
+          "when": "resourceLangId == emerald",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "emerald.compile",
+          "when": "resourceLangId == emerald",
+          "group": "emerald@1"
+        },
+        {
+          "command": "emerald.run",
+          "when": "resourceLangId == emerald",
+          "group": "emerald@2"
+        },
+        {
+          "command": "emerald.wrapper",
+          "when": "resourceLangId == emerald",
+          "group": "emerald@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Emerald",
+      "properties": {
+        "emerald.compilerPath": {
+          "type": "string",
+          "default": "eml",
+          "description": "Emerald 编译器/解释器可执行文件路径。"
+        },
+        "emerald.autoCompileOnRun": {
+          "type": "boolean",
+          "default": true,
+          "description": "运行前自动编译当前文件。"
+        },
+        "emerald.runInTerminal": {
+          "type": "boolean",
+          "default": true,
+          "description": "在集成终端中运行（否则静默执行并显示输出）。"
+        },
+        "emerald.lint.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用实时语法检查（基础诊断）。"
+        },
+        "emerald.lint.declareBeforeUse": {
+          "type": "boolean",
+          "default": true,
+          "description": "检查变量是否使用前声明。"
+        }
+      }
+    },
+    "configurationDefaults": {
+      "[emerald]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.autoIndent": "full",
+        "editor.formatOnType": false,
+        "editor.suggest.insertMode": "replace"
+      }
+    }
+  },
+  "scripts": {
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0"
+  }
+}

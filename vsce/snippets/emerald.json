@@ -1,0 +1,138 @@
+{
+  "Emerald 入口": {
+    "prefix": "eml",
+    "body": [
+      "import maineml;",
+      "",
+      "eml(){",
+      "    ${1:print(\"HelloWorld!\");}",
+      "    ${2:newline();}",
+      "    return 0;",
+      "}"
+    ],
+    "description": "Emerald 主入口函数"
+  },
+  "Hello World": {
+    "prefix": "hello",
+    "body": [
+      "import maineml;",
+      "",
+      "eml(){",
+      "    print(\"HelloWorld!\");",
+      "    newline();",
+      "    return 0;",
+      "}"
+    ],
+    "description": "Emerald Hello World 模板"
+  },
+  "变量声明 int": {
+    "prefix": ["int", "varint"],
+    "body": ["int ${1:name};"],
+    "description": "声明整数变量"
+  },
+  "变量声明 string": {
+    "prefix": ["str", "string", "varstr"],
+    "body": ["string ${1:name};"],
+    "description": "声明字符串变量"
+  },
+  "变量声明 bool": {
+    "prefix": ["bool", "varbool"],
+    "body": ["bool ${1:name};"],
+    "description": "声明布尔变量"
+  },
+  "打印": {
+    "prefix": "print",
+    "body": ["print(${1:\"内容\"});"],
+    "description": "打印输出（不换行）"
+  },
+  "换行": {
+    "prefix": "newline",
+    "body": ["newline();"],
+    "description": "输出一个换行"
+  },
+  "输入": {
+    "prefix": "input",
+    "body": ["input(${1:a});"],
+    "description": "读取一行输入到变量"
+  },
+  "讲述人": {
+    "prefix": "speak",
+    "body": ["speak(${1:\"内容\"});"],
+    "description": "讲述人朗读输出"
+  },
+  "数组格式化": {
+    "prefix": "format",
+    "body": ["format(${1:a}, list);"],
+    "description": "把变量格式化为数组"
+  },
+  "数组添加": {
+    "prefix": "listadd",
+    "body": ["list ${1:a}(add, ${2:\"内容\"});"],
+    "description": "向数组添加元素"
+  },
+  "数组删除": {
+    "prefix": "listdel",
+    "body": ["list ${1:a}(del, ${2:1});"],
+    "description": "删除数组中的第 N 项"
+  },
+  "数组清空": {
+    "prefix": "listclean",
+    "body": ["list ${1:a}(clean);"],
+    "description": "清空数组"
+  },
+  "函数": {
+    "prefix": "func",
+    "body": [
+      "function ${1:name}(){",
+      "    ${2:print(\"这是一个函数\");}",
+      "}"
+    ],
+    "description": "定义一个无返回值函数"
+  },
+  "带返回值函数": {
+    "prefix": "funcint",
+    "body": [
+      "int ${1:name}(){",
+      "    return ${2:0};",
+      "}"
+    ],
+    "description": "定义一个返回整数的函数"
+  },
+  "布尔函数": {
+    "prefix": "funcbool",
+    "body": [
+      "bool ${1:name}(){",
+      "    return ${2:true};",
+      "}"
+    ],
+    "description": "定义一个返回布尔的函数"
+  },
+  "子命令": {
+    "prefix": "subcmd",
+    "body": [
+      "subcommand(\"${1:1}\"){",
+      "    ${2:print(\"Hello!\");}",
+      "}"
+    ],
+    "description": "定义子命令分支"
+  },
+  "子命令 other": {
+    "prefix": "subcmdother",
+    "body": [
+      "subcommand(other){",
+      "    ${1:print(\"HelloWorld!\");}",
+      "}"
+    ],
+    "description": "定义子命令默认分支"
+  },
+  "导入": {
+    "prefix": "import",
+    "body": ["import ${1:maineml};"],
+    "description": "导入模块"
+  },
+  "region": {
+    "prefix": "region",
+    "body": ["// region ${1:name}", "$0", "// endregion"],
+    "description": "折叠区域"
+  }
+}
